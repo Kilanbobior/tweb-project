@@ -6,29 +6,31 @@ using System.Web.Mvc;
 
 namespace WebApplication.Controllers
 {
-    public class HomeController : Controller
+    public class ProductController : Controller
     {
-        // GET: Home
+        // GET: Product
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Autorization()
-        {
-
-            return View();
-        }
-
-        
-
-        public ActionResult index_auto()
+        public ActionResult prod_card()
         {
             return View();
         }
 
-        
+        public ActionResult AddProject()
+        {
 
-        
+            return null;
+        }
+
+        [HttpPost]
+        public ActionResult EditProject()
+        {
+            return null;
+        }
+
+
     }
 }

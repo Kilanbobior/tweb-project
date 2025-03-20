@@ -1,0 +1,88 @@
+@font-face {
+    font-family: 'OS';
+    src: url(../fonts/OpenSans-VariableFont_wdth\,wght.ttf);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+.container_content {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+}
+
+.bg_img {
+    position:absolute;
+    z-index: -1;
+}
+
+.img_back {
+    width: 100%;
+    height: 860px;
+    position: absolute;
+    z-index: -1;
+    object-fit: cover;
+    filter: brightness(70%);
+}
+
+.case_descr {
+    position: relative;
+    top: 300px;
+    right: 80px;
+    width: 400px;
+    height: 450px;
+    background-color:rgba(195,202,192,255);
+    padding: 40px 20px 20px 30px;
+}
+
+.case_descr li {
+    font-weight: 500;
+    padding-top: 15px;
+    font-size: 17px;
+    list-style-type:  none;
+}
+
+ul {
+    padding: 0;
+}
+
+h1 {
+   
+}
+
+.prace {
+    font-size: 30px;
+    font-weight: 500;
+    color:rgb(0, 0, 0);
+}
+
+.illustation {
+    margin-top: 460px;
+}
+
+.container_illust {
+  display: flex;
+  justify-content:space-around;
+  padding: 0 50px 50px 50px;
+}
+
+.text_ilust {
+    width: 500px;
+    font-weight: 500;
+    font-size: 17px;
+}
+
+.img_illu_1_1 {
+    width: 673px;
+    height: 463px;
+}
+
+.img_illu_2_2{
+    width: 540px;
+    height: 340px;
+}

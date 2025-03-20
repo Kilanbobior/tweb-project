@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\WebApplication",
-    "\\WebApplication\\Views"
+    "\\WebApplication\\Views",
+    "\\WebApplication\\Views\\Home"
   ],
-  "SelectedNode": "\\WebApplication\\Views\\_ViewStart.cshtml",
+  "SelectedNode": "\\WebApplication\\Views",
   "PreviewInSolutionExplorer": false
 }
