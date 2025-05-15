@@ -1,0 +1,47 @@
+﻿@model WebApplication.Models.Product
+
+
+<section class="content">
+    <div class="container_content">
+        <img class="img_back" src="@Model.MainImageUrl" alt="@Model.Title">
+        <div class="case_descr">
+            <div class="title_card">
+                <h1>@Model.Title</h1>
+            </div>
+            <ul>
+                <li>Количество комнат: @Model.RoomCount</li>
+                <li>Гостей: @Model.GuestCount</li>
+                <li>Средняя площадь: @Model.Area m/2</li>
+            </ul>
+            <span class="prace">@Model.Price лей в сутки </span>
+        </div>
+    </div>
+</section>
+
+<section class="illustation">
+    <div class="container_illust">
+        <div class="text_ilust">
+            <p>@Model.Description</p>
+            <div class="img_illu_1">
+                <img class="img_illu_1_1" src="@Model.AdditionalImageUrls" alt="">
+            </div>
+        </div>
+        <div class="img_illu_2">
+            <img class="img_illu_2_2" src="@Model.AdditionalImageUrls" alt="">
+        </div>
+    </div>
+</section>
+
+
+@using (Html.BeginForm("Rent", "Home", FormMethod.Post))
+{
+    <div>
+        <input type="date" id="StartDate" name="StartDate" />
+        <input type="date" id="EndDate" name="EndDate" />
+        <button type="submit">Забронировать</button>
+    </div>
+
+}
+
+
+
