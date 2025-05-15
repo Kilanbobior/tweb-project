@@ -1,0 +1,23 @@
+﻿@model List<WebApplication.Models.Order>
+
+
+@{ 
+    var userId = Guid.Parse(FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData.Split(',')[0]);
+}
+
+@if (!Model.Any())
+{
+    <h2>no rents</h2>
+}
+else
+{
+    <div>
+
+        @foreach(var item in Model)
+        {
+            <a href="@Url.Action("Prod_card", "Product", new {Id = item.ProductId})" class="btn btn-success" style="width: 100%;">Посмотреть продукт</a>
+        }
+
+    </div>
+
+}
