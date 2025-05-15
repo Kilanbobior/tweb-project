@@ -1,43 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/bootstrap-5.3.3-dist/css/bootstrap.css">
-    <link rel="stylesheet" href="./style/SignUp.css">
-    <title>SignUp</title>
-</head>
-<body>
-    <section class="content">
-        <div class="container_content">
-            <div class="main_window">
-                <div class="content_window">
-                    <div class="title">
-                        <img class="img_user" src="./icons/icons8-user-48.png"><h2>SignUp</h2>
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Ferst name" aria-label="Username" aria-describedby="basic-addon1">
-                        </div>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Second name" aria-label="Username" aria-describedby="basic-addon1">
-                        </div>
-                        <span class="input-group-text" id="basic-addon1"></span>
-                        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Email" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                        <span class="input-group-text" id="basic-addon2"></span>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="button_concant">
-                        <button type="button" class="btn btn-outline-success" style="width: 150px;">Success</button>
-                    </div>
+@model WebApplication.Dto.RegisterRequest
+@using (Html.BeginForm("SignUp", "Account", FormMethod.Post))
+{
+
+        <div class="content_window">
+            <div class="title">
+                <img class="img_user" src="./icons/icons8-user-48.png"><h2>SignUp</h2>
+            </div>
+            <div class="input-group mb-3">
+                
+                <span class="input-group-text" id="basic-addon1"></span>
+                @Html.TextBoxFor(m => m.Username, new { @class = "un", placeholder = "Username" })
+            </div>
+            <div class="input-group mb-3">
+                @Html.TextBoxFor(m => m.Email, new { @class = "un", placeholder = "Email" })
+                <span class="input-group-text" id="basic-addon2"></span>
+            </div>
+            <div class="input-group mb-3">
+                @Html.PasswordFor(m => m.Password, new { @class = "pass", placeholder = "Password" })
+                <div class="button_concant">
+                    <button type="submit" class="btn btn-outline-success" style="width: 150px;">Enter</button>
                 </div>
+                <div class="sign_up">
+                    
+                </div>
+
             </div>
         </div>
-    </section>
-</body>
-</html>
+}
