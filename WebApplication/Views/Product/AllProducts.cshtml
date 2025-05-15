@@ -1,0 +1,27 @@
+﻿@model List<WebApplication.Models.Product>
+
+<h2>AllProducts</h2>
+
+
+
+@if (!Model.Any())
+{
+    <h1>Нет мест</h1>
+}
+
+else
+{
+    <div class="ilustration">
+        @foreach(var item in Model)
+            {
+                <div class="row">
+                    <h3>@item.Title</h3>
+                    <a href="@Url.Action("Prod_card", "Product", new {Id = item.Id})"class="btn btn-success" style="width: 100%;"  >Посмотреть</a>
+                </div>
+            }
+    </div>
+
+
+
+
+}
