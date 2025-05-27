@@ -8,10 +8,20 @@ namespace Web.Controllers
 {
     public class BookingController : Controller
     {
+        private readonly IVacationBaseService vacationBaseService;
+        private readonly IBookingAppService bookingService;
+        
+        public BookingController()
+        {
+            vacationBaseService = new VactionBaseService();
+            bookingService = new BookingAppService();
+        }
+        
+        
         public ActionResult Create(Guid vacationBaseId, DateTime checkInDate, DateTime checkOutDate)
         {
             // Create service directly
-            var vacationBaseService = new VactionBaseService();
+
             var vacationBase = vacationBaseService.GetVacationBaseById(vacationBaseId);
             if (vacationBase == null)
             {
@@ -53,9 +63,7 @@ namespace Web.Controllers
                     CheckInDate = model.CheckInDate,
                     CheckOutDate = model.CheckOutDate
                 };
-
-                // Create service directly
-                var bookingService = new BookingAppService();
+                
                 var booking = bookingService.CreateBooking(bookingRequest);
 
                 return RedirectToAction("Confirmation", new { id = booking.Id });
@@ -80,7 +88,6 @@ namespace Web.Controllers
             Guid userId = Guid.NewGuid(); // Placeholder
 
             // Create service directly
-            var bookingService = new BookingAppService();
             var bookings = bookingService.GetUserBookings(userId);
             return View(bookings);
         }
@@ -91,8 +98,6 @@ namespace Web.Controllers
         {
             try
             {
-                // Create service directly
-                var bookingService = new BookingAppService();
                 bookingService.CancelBooking(id);
                 return RedirectToAction("MyBookings");
             }

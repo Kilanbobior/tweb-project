@@ -11,9 +11,18 @@ namespace Web.Controllers
 {
     public class HomeController : Controller
     {
+        
+        private readonly IVacationBaseService vacationBaseService;
+        
+        public HomeController()
+        {
+            vacationBaseService = new VactionBaseService();
+        }
+        
+        
+        
         public ActionResult Index()
         {
-            // Create service directly
             var vacationBaseService = new VactionBaseService();
 
             // Get all available accommodation options
@@ -44,9 +53,7 @@ namespace Web.Controllers
             {
                 return RedirectToAction("Index");
             }
-
-            // Create service directly
-            var vacationBaseService = new VactionBaseService();
+            
 
             // Filter options by date and capacity only
             var results = vacationBaseService.FilterAccommodationOptions(
