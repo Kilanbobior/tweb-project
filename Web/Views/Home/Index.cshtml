@@ -1,0 +1,87 @@
+﻿@model VacationBooking.Web.Models.HomeViewModel
+
+@{
+    ViewBag.Title = "Mountain Retreat Resort";
+}
+
+<div class="jumbotron">
+    <h1>Welcome to Mountain Retreat Resort</h1>
+    <p class="lead">Experience the beauty and tranquility of our mountain resort. Book your perfect accommodation today!</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Find Available Accommodations</h3>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("Search", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.SearchModel.CheckInDate, new { @class = "col-md-4 control-label" })
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(m => m.SearchModel.CheckInDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                            @Html.ValidationMessageFor(m => m.SearchModel.CheckInDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.SearchModel.CheckOutDate, new { @class = "col-md-4 control-label" })
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(m => m.SearchModel.CheckOutDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                            @Html.ValidationMessageFor(m => m.SearchModel.CheckOutDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.SearchModel.Capacity, new { @class = "col-md-4 control-label" })
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(m => m.SearchModel.Capacity, new { @class = "form-control", type = "number", min = "1" })
+                            @Html.ValidationMessageFor(m => m.SearchModel.Capacity, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-4 col-md-8">
+                            <button type="submit" class="btn btn-primary">Check Availability</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <h2>Our Accommodations</h2>
+        <div class="row">
+            @foreach (var option in Model.AccommodationOptions)
+            {
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">@option.Name</h3>
+                        </div>
+                        <div class="panel-body">
+                            @if (!string.IsNullOrEmpty(option.ImageUrl))
+                            {
+                                <img src="@option.ImageUrl" alt="@option.Name" class="img-responsive" style="width: 100%; height: 200px; object-fit: cover;" />
+                            }
+                            else
+                            {
+                                <img src="~/Content/Images/placeholder.jpg" alt="@option.Name" class="img-responsive" style="width: 100%; height: 200px; object-fit: cover;" />
+                            }
+                            <p><strong>Type:</strong> @option.AccommodationType</p>
+                            <p><strong>Price:</strong> $@option.PricePerNight per night</p>
+                            <p><strong>Capacity:</strong> Up to @option.Capacity guests</p>
+                            <p>@option.Description.Substring(0, Math.Min(100, option.Description.Length))@(option.Description.Length > 100 ? "..." : "")</p>
+                        </div>
+                        <div class="panel-footer">
+                            @Html.ActionLink("View Details", "Details", "VacationBase", new { id = option.Id }, new { @class = "btn btn-primary" })
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

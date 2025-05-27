@@ -1,0 +1,38 @@
+@model IEnumerable<Application.DTOs.VacationBaseDTO>
+
+@{
+ViewBag.Title = "Search Results";
+}
+
+<h2>Search Results</h2>
+
+@if (!Model.Any())
+{
+<div class="alert alert-info">
+    No vacation bases found matching your criteria. Please try a different search.
+</div>
+}
+else
+{
+<div class="row">
+    @foreach (var item in Model)
+    {
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">@item.Name</h3>
+            </div>
+            <div class="panel-body">
+                <p><strong>Price per night:</strong> $@item.PricePerNight</p>
+                <p><strong>Capacity:</strong> @item.Capacity people</p>
+                <p>@item.Description</p>
+
+            </div>
+            <div class="panel-footer">
+                @Html.ActionLink("View Details", "Details", "VacationBase", new { id = item.Id }, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    </div>
+    }
+</div>
+}

@@ -1,0 +1,13 @@
+@{
+ViewBag.Title = "Booking Confirmation";
+}
+
+<div class="alert alert-success">
+    <h2>Booking Confirmed!</h2>
+    <p>Your booking has been successfully created. You will receive a confirmation email shortly.</p>
+</div>
+
+<p>
+    @Html.ActionLink("View My Bookings", "MyBookings", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Back to Home", "Index", "Home", null, new { @class = "btn btn-default" })
+</p>

@@ -1,0 +1,19 @@
+@model Web.Models.LoginViewModel
+
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+
+    <head>
+        <title>aaa</title>
+        <link rel="stylesheet" href="~/wwwroot/login.css" />
+    </head>
+    <div class="main" align="center">
+        <p class="sign">Sign in</p>
+        <form class="form1">                            
+            <li>@Html.ActionLink("Create", "Create", "VacationBase")</li>
+        </form>
+        <button type="submit" class="button-64">Login</button>
+    </div>
+
+}

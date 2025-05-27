@@ -1,0 +1,60 @@
+@model Application.DTOs.VacationBaseDTO
+
+@{
+    ViewBag.Title = "Accommodation Details";
+}
+
+<h2>@Model.Name</h2>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Details</h3>
+            </div>
+            <div class="panel-body">
+                @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                {
+                    <img src="@Model.ImageUrl" alt="@Model.Name" class="img-responsive" style="width: 100%; max-height: 400px; object-fit: cover; margin-bottom: 20px;" />
+                }
+                else
+                {
+                    <img src="~/Content/Images/placeholder.jpg" alt="@Model.Name" class="img-responsive" style="width: 100%; max-height: 400px; object-fit: cover; margin-bottom: 20px;" />
+                }
+                <p><strong>Type:</strong> @Model.AccommodationType</p>
+                <p><strong>Price per night:</strong> $@Model.PricePerNight</p>
+                <p><strong>Capacity:</strong> Up to @Model.Capacity guests</p>
+                <p>@Model.Description</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Book Now</h3>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("Create", "Booking", FormMethod.Get))
+                {
+                    <input type="hidden" name="vacationBaseId" value="@Model.Id" />
+
+                    <div class="form-group">
+                        <label for="checkInDate">Check-in Date</label>
+                        <input type="date" id="checkInDate" name="checkInDate" class="form-control" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="checkOutDate">Check-out Date</label>
+                        <input type="date" id="checkOutDate" name="checkOutDate" class="form-control" required />
+                    </div>
+
+                    <button type="submit" class="btn btn-success btn-block">Book Now</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Back to Home", "Index", "Home", null, new { @class = "btn btn-default" })
+</p>

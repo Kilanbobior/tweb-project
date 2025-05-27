@@ -1,0 +1,31 @@
+@model Web.Models.CreateVacationBaseViewModel
+
+@{
+    ViewBag.Title = "Create Base";
+}
+
+<h2>Create Booking</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Confirm Booking</h3>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("Create", "VacationBase", FormMethod.Post))
+                {
+                    @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Name" })
+                    @Html.TextBoxFor(x => x.PricePerNight, new { @class = "form-control", placeholder = "PricePerNight" })
+                    @Html.CheckBoxFor(x => x.IsAvailable, new { @class = "form-control", placeholder = "IsAvailable" })
+                    @Html.TextBoxFor(x => x.Capacity, new { @class = "form-control", placeholder = "Capacity" })
+                    @Html.TextBoxFor(x => x.Description, new { @class = "form-control", placeholder = "Description" })
+                    @Html.TextBoxFor(x => x.AccommodationType, new { @class = "form-control", placeholder = "AccommodationType" })
+                    @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control", placeholder = "ImageUrl" })
+                    
+                    <button type="submit" class="btn btn-success btn-block">Confirm Booking</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>

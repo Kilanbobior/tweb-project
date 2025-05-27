@@ -1,0 +1,47 @@
+@model Web.Models.CreateBookingViewModel
+
+@{
+ViewBag.Title = "Create Booking";
+}
+
+<h2>Create Booking</h2>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Booking Details</h3>
+            </div>
+            <div class="panel-body">
+                <p><strong>Vacation Base:</strong> @Model.VacationBaseName</p>
+                <p><strong>Check-in Date:</strong> @Model.CheckInDate.ToShortDateString()</p>
+                <p><strong>Check-out Date:</strong> @Model.CheckOutDate.ToShortDateString()</p>
+                <p><strong>Total Nights:</strong> @Model.TotalNights</p>
+                <p><strong>Price per Night:</strong> $@Model.PricePerNight</p>
+                <p><strong>Total Price:</strong> $@Model.TotalPrice</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Confirm Booking</h3>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm())
+                {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.VacationBaseId)
+                @Html.HiddenFor(m => m.VacationBaseName)
+                @Html.HiddenFor(m => m.CheckInDate)
+                @Html.HiddenFor(m => m.CheckOutDate)
+                @Html.HiddenFor(m => m.TotalNights)
+                @Html.HiddenFor(m => m.PricePerNight)
+                @Html.HiddenFor(m => m.TotalPrice)
+
+                <button type="submit" class="btn btn-success btn-block">Confirm Booking</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>

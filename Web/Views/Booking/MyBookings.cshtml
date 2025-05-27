@@ -1,0 +1,53 @@
+@model IEnumerable<Application.DTOs.BookingDTO>
+
+@{
+ViewBag.Title = "My Bookings";
+}
+
+<h2>My Bookings</h2>
+
+@if (!Model.Any())
+{
+<div class="alert alert-info">
+    You don't have any bookings yet.
+</div>
+}
+else
+{
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Vacation Base</th>
+        <th>Check-in Date</th>
+        <th>Check-out Date</th>
+        <th>Total Price</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var booking in Model)
+    {
+    <tr>
+        <td>@booking.VacationBaseName</td>
+        <td>@booking.CheckInDate.ToShortDateString()</td>
+        <td>@booking.CheckOutDate.ToShortDateString()</td>
+        <td>$@booking.TotalPrice</td>
+        <td>@booking.Status</td>
+        <td>
+            @if (booking.Status == "Pending" || booking.Status == "Confirmed")
+            {
+            using (Html.BeginForm("Cancel", "Booking", new { id = booking.Id }, FormMethod.Post, new { style = "display:inline;" }))
+            {
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to cancel this booking?');">
+                Cancel
+            </button>
+            }
+            }
+        </td>
+    </tr>
+    }
+    </tbody>
+</table>
+}
